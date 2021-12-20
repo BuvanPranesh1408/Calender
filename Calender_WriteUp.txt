@@ -1,0 +1,10 @@
+
+
+Calendar
+1. The user need to input the username and password.
+2. If the username and password is correct and it will ask the user to enter a number from -12 to +12.
+3. According to the input from the user the respective calender month will be displayed.
+4. Then it will ask whether the user need to continue or exit.
+5. If user enter yes it will continue else the program will stop executing.
+
+

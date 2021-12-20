@@ -1,0 +1,71 @@
+from datetime import date
+import calendar,time,re,sys
+
+def calender_highlight(new_month,new_year):
+    if new_month>0:
+        thism = calendar.month(new_year, new_month)
+    else:
+        year, month, thism = today.year, today.month, calendar.month(year, month)
+    date = today.day.__str__().rjust(2)
+    rday = ('\\b' + date + '\\b').replace('\\b ', '\\s')
+    rdayc = "\033[7m" + date + "\033[0m"
+    print(re.sub(rday, rdayc, thism))
+
+def calender_process():
+    user_input = 0
+    while True :
+        user_input = int(input("Enter the month between 1 - 12:"))
+        if (user_input >= -12 & user_input <= 12):
+            if user_input > 0:
+                sum = month + user_input
+                if sum > 12:
+                    new_month, new_year = sum - 12, year + 1
+                elif sum < 12:
+                    new_month, new_year = sum, today.year
+                elif sum == 12:
+                    new_month, new_year = month + 1, today.year
+            elif user_input < 0:
+                difference = month + user_input
+                if difference < 0:
+                    new_month, new_year = difference + 12, year - 1
+                elif difference > 0:
+                    new_month, new_year = difference, today.year
+            elif user_input == 0:
+                new_month, new_year = today.month, today.year
+            calender_highlight(new_month, new_year)
+            sure_want_continue = input("press YES to continue or NO to exit ")
+            if sure_want_continue == "NO" or sure_want_continue == "no" or sure_want_continue == "No":
+                print("Program stopped executing")
+                sys.exit()
+            elif sure_want_continue =="YES" or sure_want_continue =="yes" or sure_want_continue =="Yes":
+                pass
+            else:
+                print("Enter the input properly")
+                
+        else:
+            print("Months should be in between -12 and +12")
+            sys.exit()
+
+Total_attempts=3
+while True:
+    Total_attempts-=1
+    username = input("Enter the username: ")
+    password= input("Enter the password: ")
+    if username == "xxxx" and  password == "yyyy":
+        today = date.today()
+        year = today.year
+        month = today.month
+        print(month)
+        new_month = 0
+        new_year = 0
+        calender_highlight(month,year)
+        calender_process()
+    
+    if Total_attempts == 0:
+        print("UserName and password are incorrect")
+        print("You have exceed the total number of attempts")
+        sys.exit()
+
+
+
+
